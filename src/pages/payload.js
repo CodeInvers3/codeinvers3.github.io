@@ -7,14 +7,20 @@ const PayloadPage = () => {
 
         var req = new XMLHttpRequest();
 
-        req.open(options.method, options.url, typeof options.async === 'boolean' ? options.async : true);
-        if(options.responseType){
+        if (typeof options.async == 'boolean') {
+            req.open(options.method, options.url, options.async);
+        } else {
+            req.open(options.method, options.url);
+        }
+
+        if (options.responseType) {
             req.responseType = options.responseType;
         }
-        req.onload = function() {
+
+        req.onload = function () {
             if (req.status >= 200 && req.status < 300) {
                 if (typeof options.success === 'function') {
-                    options.success(req.response);
+                    options.success(req);
                 }
             } else {
                 if (typeof options.error === 'function') {
@@ -22,18 +28,21 @@ const PayloadPage = () => {
                 }
             }
         };
-        req.onerror = function() {
+
+        req.onerror = function () {
             if (typeof options.error === 'function') {
                 options.error(req.statusText);
             }
         };
+
         req.send(options.data ? options.data : null);
+
         return {
-            done: function(callback) {
+            done: function (callback) {
                 options.success = callback;
                 return this;
             },
-            fail: function(callback) {
+            fail: function (callback) {
                 options.error = callback;
                 return this;
             }
@@ -42,22 +51,21 @@ const PayloadPage = () => {
     }
 
     function setPayload(source){
+
         jxhr({
             method: 'POST',
             url: 'http://127.0.0.1:9090/status',
-        }).done(function(event){
-
-            var target = event.target;
-            var res = JSON.parse(target.responseText);
+        }).done(function(req){
+            
+            var res = JSON.parse(req.responseText);
             if(res.status == 'ready'){
                 
                 jxhr({
                     method: 'GET',
                     url: '/payloads/'+source,
                     responseType: 'arraybuffer'
-                }).done(function(event){
+                }).done(function(req){
                     
-                    var req = event.target;
                     if((req.status === 200 || req.status === 304) && req.response){
                         
                         jxhr({
