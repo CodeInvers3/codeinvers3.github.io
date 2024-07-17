@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Script } from "gatsby"
-import * as custom from "./styles/custom.css"
 
 const PayloadPage = () => {
 
