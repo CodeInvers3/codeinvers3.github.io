@@ -52,8 +52,8 @@ const PayloadPage = () => {
         }
 
         ajax({
-            method: 'GET',
-            url: 'http://192.168.2.11:9090',
+            method: 'POST',
+            url: 'http://192.168.2.11:9090/status',
         }).done(function(req){
 
             alert(req.responseText);
