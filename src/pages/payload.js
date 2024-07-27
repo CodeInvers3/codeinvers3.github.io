@@ -3,57 +3,57 @@ import { Script } from "gatsby"
 
 const PayloadPage = () => {
 
-    function ajax(options){
+    function setPayload(source){
+
+        function ajax(options){
                     
-        var req = new XMLHttpRequest();
-        
-        if(typeof options.async == 'boolean'){
-            req.open(options.method, options.url, options.async);
-        }else{
-            req.open(options.method, options.url);
-        }
-
-        if(options.responseType){
-            req.responseType = options.responseType;
-        }
-
-        req.onload = function() {
-            if (req.status >= 200 && req.status < 300) {
-                if (typeof options.success === 'function') {
-                    options.success(req);
+            var req = new XMLHttpRequest();
+            
+            if(typeof options.async == 'boolean'){
+                req.open(options.method, options.url, options.async);
+            }else{
+                req.open(options.method, options.url);
+            }
+    
+            if(options.responseType){
+                req.responseType = options.responseType;
+            }
+    
+            req.onload = function() {
+                if (req.status >= 200 && req.status < 300) {
+                    if (typeof options.success === 'function') {
+                        options.success(req);
+                    }
+                } else {
+                    if (typeof options.error === 'function') {
+                        options.error(req.statusText);
+                    }
                 }
-            } else {
+            };
+            
+            req.onerror = function() {
                 if (typeof options.error === 'function') {
                     options.error(req.statusText);
                 }
-            }
-        };
-        
-        req.onerror = function() {
-            if (typeof options.error === 'function') {
-                options.error(req.statusText);
-            }
-        };
-
-        req.send(options.data ? options.data : null);
-        
-        return {
-            done: function(callback){
-                options.success = callback;
-                return this;
-            },
-            fail: function(callback){
-                options.error = callback;
-                return this;
-            }
-        };
-    }
-
-    function setPayload(source){
+            };
+    
+            req.send(options.data ? options.data : null);
+            
+            return {
+                done: function(callback){
+                    options.success = callback;
+                    return this;
+                },
+                fail: function(callback){
+                    options.error = callback;
+                    return this;
+                }
+            };
+        }
 
         ajax({
-            method: 'POST',
-            url: 'http://127.0.0.1:9090/status',
+            method: 'GET',
+            url: '/scripts/script.js',
         }).done(function(req){
 
             alert(req);
