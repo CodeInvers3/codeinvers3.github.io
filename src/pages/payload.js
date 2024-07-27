@@ -56,7 +56,7 @@ const PayloadPage = () => {
             url: '/scripts/script.js',
         }).done(function(req){
 
-            alert(req);
+            alert(req.responseText);
             
             /*var res = JSON.parse(req.responseText);
             if(res.status == 'ready'){
