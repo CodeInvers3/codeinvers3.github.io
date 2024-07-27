@@ -3,21 +3,21 @@ import { Script } from "gatsby"
 
 const PayloadPage = () => {
 
-    function jxhr(options) {
-
+    function ajax(options){
+                    
         var req = new XMLHttpRequest();
-
-        if (typeof options.async == 'boolean') {
+        
+        if(typeof options.async == 'boolean'){
             req.open(options.method, options.url, options.async);
-        } else {
+        }else{
             req.open(options.method, options.url);
         }
 
-        if (options.responseType) {
+        if(options.responseType){
             req.responseType = options.responseType;
         }
 
-        req.onload = function () {
+        req.onload = function() {
             if (req.status >= 200 && req.status < 300) {
                 if (typeof options.success === 'function') {
                     options.success(req);
@@ -28,33 +28,32 @@ const PayloadPage = () => {
                 }
             }
         };
-
-        req.onerror = function () {
+        
+        req.onerror = function() {
             if (typeof options.error === 'function') {
                 options.error(req.statusText);
             }
         };
 
         req.send(options.data ? options.data : null);
-
+        
         return {
-            done: function (callback) {
+            done: function(callback){
                 options.success = callback;
                 return this;
             },
-            fail: function (callback) {
+            fail: function(callback){
                 options.error = callback;
                 return this;
             }
         };
-
     }
 
     function setPayload(source){
 
-        jxhr({
+        ajax({
             method: 'POST',
-            url: 'http://192.168.2.11:9090/status',
+            url: 'http://127.0.0.1:9090/status',
         }).done(function(req){
 
             alert(req);
