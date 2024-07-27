@@ -53,7 +53,7 @@ const PayloadPage = () => {
 
         ajax({
             method: 'GET',
-            url: '/scripts/script.js',
+            url: 'http://192.168.2.11:9090',
         }).done(function(req){
 
             alert(req.responseText);
