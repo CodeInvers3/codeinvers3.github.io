@@ -1,5 +1,0 @@
-/**/
-
-var data = {
-    hello: "one"
-}
