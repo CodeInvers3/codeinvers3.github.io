@@ -54,10 +54,12 @@ const PayloadPage = () => {
 
         jxhr({
             method: 'POST',
-            url: 'http://127.0.0.1:9090/status',
+            url: 'http://192.168.2.11:9090/status',
         }).done(function(req){
+
+            alert(req);
             
-            var res = JSON.parse(req.responseText);
+            /*var res = JSON.parse(req.responseText);
             if(res.status == 'ready'){
                 
                 jxhr({
@@ -89,7 +91,7 @@ const PayloadPage = () => {
                     }
 
                 });
-            }
+            }*/
 
         }).fail(function(err){
             alert("Cannot Load Payload Because The BinLoader Server Is Not Running");
