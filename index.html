@@ -6,146 +6,19 @@
         <script type="text/javascript" src="assets/js/underscore-min.js"></script>
         <script type="text/javascript" src="assets/js/backbone-min.js"></script>
         <style>
-            .row{
-                display: block;
-                position: relative;
-                width: 100%;
-            }
-            #output{
-                display: block;
-                width: 100%;
-                height: 900px;
-                color: beige;
-                background-color: black;
-                padding: 15px;
-                font-size: 12pt;
+            .body, *{
+                margin: 0;
+                padding: 0;
             }
         </style>
     </head>
     <body>
-        <div id="doc-row">
-            <script type="text/template" id="app-view">
-                <div>
-                    <button type="button" class="set-payload" value="payloads/pl_wtsb.bin">Check PS4 Board</button>
-                    <button type="button" class="set-payload" value="payloads/nazky/LinuxLoader-900-2gb.bin">Nazky linux 2GB</button>
-                    <button type="button" class="set-payload" value="payloads/nazky/LinuxLoader-900-3gb.bin">Nazky linux 3GB</button>
-                    <button type="button" class="set-payload" value="payloads/eeplys/payload-900-3gb.bin">EEplys linux 3GB</button>
-                    <button type="button" class="set-payload" value="payloads/psxita/payload-900-1gb.bin">PSxita linux 1GB</button>
-                    <button type="button" class="set-payload" value="payloads/psxita/payload-900-3gb.bin">PSxita linux 3GB</button>
-                </div>
-                <div class="row">
-                    <textarea id="output" size="400" readonly=""></textarea>
-                </div>
-            </script>
+        <div id="conteiner">
+            <h2>Code Invers3 repository</h2>
+            <p>Here stored PS4 PPPwn paylodas and tools.</p>
         </div>
         <script type="text/javascript">
-            var appView = Backbone.View.extend({
-                el: '#doc-row',
-                template: _.template($('#app-view').html()),
-                events: {
-                    'click button.set-payload': 'setPayload'
-                },
-                ajax: function(options){
-                    
-                    var req = new XMLHttpRequest();
-                    
-                    if(typeof options.async == 'boolean'){
-                        req.open(options.method, options.url, options.async);
-                    }else{
-                        req.open(options.method, options.url);
-                    }
-
-                    if(options.responseType){
-                        req.responseType = options.responseType;
-                    }
-
-                    req.onload = function() {
-                        if (req.status >= 200 && req.status < 300) {
-                            if (typeof options.success === 'function') {
-                                options.success(req);
-                            }
-                        } else {
-                            if (typeof options.error === 'function') {
-                                options.error(req.statusText);
-                            }
-                        }
-                    };
-                    
-                    req.onerror = function() {
-                        if (typeof options.error === 'function') {
-                            options.error(req.statusText);
-                        }
-                    };
-
-                    req.send(options.data ? options.data : null);
-                    
-                    return {
-                        done: function(callback){
-                            options.success = callback;
-                            return this;
-                        },
-                        fail: function(callback){
-                            options.error = callback;
-                            return this;
-                        }
-                    };
-                },
-                setPayload: function(event){
-
-                    var selector = $(event.target);
-                    
-                    var self = this;
-                    this.ajax({
-                        method: 'POST',
-                        url: 'http://127.0.0.1:9090/status',
-                    }).done(function(req){
-
-                        var res = JSON.parse(req.responseText);
-                        if(res.status == 'ready'){
-                            
-                            self.ajax({
-                                method: 'GET',
-                                url: selector.val(),
-                                responseType: 'arraybuffer'
-                            }).done(function(req){
-
-                                if((req.status === 200 || req.status === 304) && req.response){
-                                    
-                                    self.ajax({
-                                        method: 'POST',
-                                        url: 'http://127.0.0.1:9090',
-                                        async: true,
-                                        data: req.response
-                                    }).done(function(event){
-
-                                        if(req.status === 200){
-                                            $('textarea#output').append("Payload loaded!\n");
-                                        }else{
-                                            $('textarea#output').append("Cannot send payload\n");
-                                            return;
-                                        }
-
-                                    }).fail(function(){
-                                        alert("Cannot Load Payload Because The BinLoader Server Is Busy");
-                                    });
-
-                                }
-
-                            });
-                        }
-
-                    }).fail(function(err){
-                        alert("Cannot Load Payload Because The BinLoader Server Is Not Running");
-                    });
-
-                },
-                render: function(){
-                    this.$el.append(this.template());
-                }
-            });
-
-            var doc = new appView();
-            doc.render();
+            
         </script>
     </body>
 </html>
