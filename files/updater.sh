@@ -31,8 +31,8 @@ fi
 rm -f /usr/sbin/pppwn /etc/init.d/pw /etc/config/pw && rm -rf /root/*
 
 mkdir /tmp/PPPwn_ow
-"$(wget -O /tmp/pw.tar https://raw.githubusercontent.com/CodeInvers3/codeinvers3.github.io/refs/heads/master/files/PPPwn_ow.tar)"
-"$(tar -xvf /tmp/pw.tar -C /tmp/PPPwn_ow && rm /tmp/pw.tar)"
+wget -O /tmp/pw.tar https://raw.githubusercontent.com/CodeInvers3/codeinvers3.github.io/refs/heads/master/files/PPPwn_ow.tar
+tar -xvf /tmp/pw.tar -C /tmp/PPPwn_ow && rm /tmp/pw.tar
 
 mv -f /tmp/PPPwn_ow/etc/config/* /etc/config
 mv -f /tmp/PPPwn_ow/etc/init.d/* /etc/init.d
@@ -50,3 +50,5 @@ chmod +x /etc/init.d/pw /etc/init.d/pppoe-server /www/cgi-bin/pw.cgi
 
 /etc/init.d/pppoe-server enable
 /etc/init.d/pppoe-server start
+
+rm -f /tmp/updater.sh
