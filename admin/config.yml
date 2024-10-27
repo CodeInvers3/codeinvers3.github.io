@@ -1,8 +1,16 @@
 backend:
-  name: github
-  repo: CodeInvers3/codeinvers3.github.io # Path to your GitHub repository
+  name: git-gateway
   # optional, defaults to master
   branch: master
   #use_graphql: true
-  #auth: 
-    #token: 
+  media_folder: "media/images"
+  media_library: "media/files"
+  collections:
+  - name: "posts"
+    label: "Post"
+    folder: "_posts"
+    filter:
+      field: language
+      value: en
+    fields:
+      - { label: "Language", name: "language" }
