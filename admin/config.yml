@@ -1,9 +1,9 @@
 backend:
   name: git-gateway
   branch: master
-  media_folder: "images"
-  media_library: "files"
-  collections:
+media_folder: "images"
+media_library: "files"
+collections:
   - name: "posts"
     label: "Post"
     folder: "_posts"
