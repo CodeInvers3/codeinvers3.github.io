@@ -1,8 +1,6 @@
 backend:
   name: git-gateway
-  # optional, defaults to master
   branch: master
-  #use_graphql: true
   media_folder: "images"
   media_library: "files"
   collections:
