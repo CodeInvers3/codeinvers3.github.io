@@ -3,8 +3,8 @@ backend:
   # optional, defaults to master
   branch: master
   #use_graphql: true
-  media_folder: "media/images"
-  media_library: "media/files"
+  media_folder: "images"
+  media_library: "files"
   collections:
   - name: "posts"
     label: "Post"
