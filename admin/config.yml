@@ -3,7 +3,10 @@ backend:
   repo: CodeInvers3/codeinvers3.github.io
   branch: master
 media_folder: "images"
-media_library: "files"
+media_library:
+  name: uploadcare
+  config:
+    publicKey: demopublickey
 collections:
   - name: "posts"
     label: "Post"
