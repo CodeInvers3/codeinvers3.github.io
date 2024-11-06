@@ -16,16 +16,17 @@ collections:
     label: "Posts"
     label_singular: 'Post'
     folder: "_posts"
+    extension: "json"
+    format: "json"
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-    summary: '{{title}} -- {{year}}/{{month}}/{{day}}'
     create: true
     fields:
       - { label: "Title", name: "title", widget: "string", tagname: "h1" }
       - {
-          label: 'Publish Date',
-          name: 'date',
-          widget: 'datetime',
-          format: 'YYYY-MM-DD HH:mm',
-          default: '{{now}}',
+          label: "Publish Date",
+          name: "date",
+          widget: "datetime",
+          format: "",
+          default: "YYYY-MM-DD HH:mm",
         }
-      - { label: 'Body', name: 'body', widget: 'markdown', hint: 'Main content goes here.' }
+      - { label: "Body", name: "body", widget: "text", hint: "Main content goes here." }
