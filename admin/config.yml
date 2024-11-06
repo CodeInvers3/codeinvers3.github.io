@@ -3,17 +3,29 @@ backend:
   name: git-gateway
   repo: CodeInvers3/codeinvers3.github.io
   branch: master
-media_folder: "images"
+
+site_url: https://codeinvers3.netlify.com
+
+media_folder: "media"
 media_library:
   name: uploadcare
   config:
     publicKey: demopublickey
 collections:
   - name: "posts"
-    label: "Post"
+    label: "Posts"
+    label_singular: 'Post'
     folder: "_posts"
-    filter:
-      field: language
-      value: en
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    summary: '{{title}} -- {{year}}/{{month}}/{{day}}'
+    create: true
     fields:
-      - { label: "Language", name: "language" }
+      - { label: "Title", name: "title", widget: "string", tagname: "h1" }
+      - {
+          label: 'Publish Date',
+          name: 'date',
+          widget: 'datetime',
+          format: 'YYYY-MM-DD HH:mm',
+          default: '{{now}}',
+        }
+      - { label: 'Body', name: 'body', widget: 'markdown', hint: 'Main content goes here.' }
