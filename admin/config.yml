@@ -29,4 +29,4 @@ collections:
           format: "",
           default: "YYYY-MM-DD HH:mm",
         }
-      - { label: "Body", name: "body", widget: "text", hint: "Main content goes here." }
+      - { label: "Body", name: "body", widget: "markdown", hint: "Main content goes here." }
