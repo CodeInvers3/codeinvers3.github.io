@@ -10,7 +10,7 @@ exports.handler = async function(){
     
         var posts = '';
         files.map(file => {
-            posts += postsDir + file + "\n"
+            posts += postsDir + "/" + file + "\n"
         });
     
         return {
