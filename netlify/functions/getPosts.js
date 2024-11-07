@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-exports.handler = async function() {
+exports.handler = async function(){
+
     try {
         
         const postsDir = path.join(process.cwd(), '_posts');
@@ -16,11 +17,12 @@ exports.handler = async function() {
             statusCode: 200,
             body: JSON.stringify(posts)
         };
+
     } catch (error) {
         console.error('Error to get posts:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: 'Cannot get posts.' })
+            body: JSON.stringify({ message: `Cannot get posts: ${error.message}` })
         };
     }
 };
