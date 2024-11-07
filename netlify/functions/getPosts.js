@@ -6,7 +6,7 @@ exports.handler = async function(){
     try {
         
         const postsDir = path.join(__dirname, '_posts');
-        const files = fs.readdirSync('_posts');
+        const files = fs.readdirSync('/');
     
         /*const posts = files.filter(file => file.endsWith('.json')).map(file => {
             const content = fs.readFileSync(path.join(postsDir, file), 'utf-8');
