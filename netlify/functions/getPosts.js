@@ -15,7 +15,7 @@ exports.handler = async function(){
     
         return {
             statusCode: 200,
-            body: path.join(process.cwd(), '_posts')
+            body: process.cwd() + '/_posts'
         };
 
     } catch (error) {
