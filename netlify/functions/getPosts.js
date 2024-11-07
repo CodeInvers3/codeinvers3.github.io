@@ -4,9 +4,9 @@ const path = require('path');
 exports.handler = async function(){
 
     try {
-        
+
         const postsDir = path.join(__dirname, '_posts');
-        const files = fs.readdirSync('/');
+        const files = fs.readdirSync(postsDir);
     
         var posts = '';
         files.map(file => {
