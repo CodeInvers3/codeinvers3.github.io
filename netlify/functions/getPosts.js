@@ -5,7 +5,7 @@ exports.handler = async function(){
 
     try {
         
-        const postsDir = path.join(process.cwd(), '_posts');
+        /*const postsDir = path.join(process.cwd(), '_posts');
         /*const files = fs.readdirSync(postsDir);
     
         const posts = files.filter(file => file.endsWith('.json')).map(file => {
