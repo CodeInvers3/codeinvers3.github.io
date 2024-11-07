@@ -18,8 +18,8 @@ fi
 if [ -f /etc/ppp/pppoe-server-options ]; then
     rm /etc/ppp/pppoe-server-options
 fi
-if [ -d /www/pppwn ]; then
-    rm -rf /www/pppwn
+if [ -d /www/assets ]; then
+    rm -rf /www/assets
 fi
 if [ -f /www/pppwn.html ]; then
     rm -f /www/pppwn.html
