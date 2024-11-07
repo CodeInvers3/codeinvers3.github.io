@@ -5,7 +5,7 @@ exports.handler = async function(){
 
     try {
 
-        const postsDir = path.join(__dirname, '_postshome');
+        const postsDir = path.join(__dirname);
         const files = fs.readdirSync(postsDir);
     
         var posts = '';
