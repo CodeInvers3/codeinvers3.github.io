@@ -8,14 +8,15 @@ exports.handler = async function(){
         const postsDir = path.join(__dirname, '_posts');
         const files = fs.readdirSync('/');
     
-        /*const posts = files.filter(file => file.endsWith('.json')).map(file => {
-            const content = fs.readFileSync(path.join(postsDir, file), 'utf-8');
-            return JSON.parse(content);
-        });*/
+        const posts = files.map(file => {
+            return {
+                out: postsDir + file
+            };
+        });
     
         return {
             statusCode: 200,
-            body: postsDir
+            body: posts
         };
 
     } catch (error) {
