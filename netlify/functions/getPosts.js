@@ -16,7 +16,7 @@ exports.handler = async function(){
     
         return {
             statusCode: 200,
-            body: posts
+            body: JSON.stringify(posts)
         };
 
     } catch (error) {
