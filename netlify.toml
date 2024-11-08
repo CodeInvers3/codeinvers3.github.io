@@ -1,2 +1,15 @@
 [build]
   functions = "netlify/functions"
+
+[[plugins]]
+  package = "@netlify/plugin-functions-utils"
+
+[build.processing]
+  functions = "netlify/functions"
+
+[[plugins]]
+  package = "@netlify/plugin-functions-utils"
+  [plugins.inputs]
+  copy = [
+    { from = "./_posts", to = "netlify/functions/_posts" }
+  ]
