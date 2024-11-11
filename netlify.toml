@@ -1,9 +1,9 @@
 [build]
   functions = "netlify/functions"
+  publish = "public"
+  node_bundler = "esbuild"
 
-[[plugins]]
-  package = "@netlify/plugin-functions-utils"
-  [plugins.inputs]
-  copy = [
-    { from = "./_posts", to = "netlify/functions/_posts" }
-  ]
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
