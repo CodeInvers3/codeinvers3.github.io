@@ -6,7 +6,7 @@ exports.handler = async function(event){
     try {
 
         const subject = event.queryStringParameters.name || 'post'
-        const postsDir = path.join(__dirname, '..', '..', 'public', '_posts', subject + '.json');
+        const postsDir = path.join(__dirname, '_posts', subject + '.json');
         const post = fs.readFileSync(postsDir);
     
         return {
