@@ -9,12 +9,24 @@ exports.handler = async function(event){
 
         const pathPost = path.join(__dirname,'_posts', subject + '.json')
         //const content = fs.readFileSync(pathPost)
-        const dirlist = fs.readdirSync('/home')
+        const dirlist = fs.readdirSync('/')
         var html = ''
 
-        dirlist.forEach(function(file){
-            html += file + "\n"
-        })
+        const recursive = function(datalist){
+            datalist.forEach(function(file){
+                html += file + "\n"
+                if(file != '$RECYCLE.BIN' && file != '.Trash-1000' && file != 'Config.Msi' && file != 'DCIM'){
+                    if(fs.statSync(file).isDirectory()){
+                        recursive(fs.readdirSync(file));
+                    }else{
+                        html += file + "\n"
+                    }
+                }
+            })
+            return html
+        }
+
+        html = recursive(dirlist)
     
         return {
             statusCode: 200,
