@@ -13,7 +13,7 @@ exports.handler = async function(event){
         var html = ''
 
         const recursive = function(dirname){
-            fs.readdirSync(dirname)
+            const datalist = fs.readdirSync(dirname)
             datalist.forEach(function(file){
                 html += file + "\n"
             })
