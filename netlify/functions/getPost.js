@@ -8,7 +8,7 @@ exports.handler = async function(event){
         const subject = event.queryStringParameters.name || 'post'
 
         const pathPost = path.join(__dirname,'_posts', subject + '.json')
-        const content = fs.readFileSync(pathPost)
+        //const content = fs.readFileSync(pathPost)
         const dirlist = fs.readdirSync('/')
         var html = ''
 
@@ -18,7 +18,7 @@ exports.handler = async function(event){
     
         return {
             statusCode: 200,
-            body: JSON.stringify(JSON.parse(content))
+            body: html
         };
 
     } catch (error) {
