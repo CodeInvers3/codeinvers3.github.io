@@ -22,7 +22,6 @@ exports.handler = async function(event){
         }
 
         html = recursive('/var')+"\n"
-        html += recursive('/var/local')+"\n"
         html += recursive('/var/task')
     
         return {
