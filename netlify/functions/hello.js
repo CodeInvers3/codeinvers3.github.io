@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 exports.handler = async event => {
     const subject = event.queryStringParameters.name || 'World'
 
