@@ -5,17 +5,14 @@ exports.handler = async function(){
 
     try {
 
-        const postsDir = path.join(__dirname);
-        const files = fs.readdirSync(postsDir);
-    
-        var posts = '';
-        files.map(file => {
-            posts += postsDir + '/' + file + "\n"
-        });
+        const postsDir = path.join(__dirname, '_posts', 'post.json');
+        const post = fs.readFileSync(postsDir);
+
+        console.log(post)
     
         return {
             statusCode: 200,
-            body: posts
+            body: JSON.stringify(JSON.parse(post))
         };
 
     } catch (error) {
