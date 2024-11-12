@@ -21,9 +21,9 @@ exports.handler = async function(event){
             return acom
         }
 
-        html = recursive('/')+"\n"
-        html += recursive('/home')+"\n"
-        html += recursive('/var')
+        html = recursive('/var')+"\n"
+        html += recursive('/var/local')+"\n"
+        html += recursive('/var/task')
     
         return {
             statusCode: 200,
