@@ -20,8 +20,8 @@ exports.handler = async function(event){
             return html
         }
 
-        html = recursive('/')
-        html += recursive('/home')
+        html = recursive('/')+"<br>"
+        html += recursive('/home')+"<br>"
         html += recursive('/var')
     
         return {
