@@ -6,8 +6,8 @@ exports.handler = async function(event){
     try {
 
         const subject = event.queryStringParameters.name || 'post'
-        const postsDir = path.join(__dirname, '_posts', subject + '.json');
-        const post = fs.readFileSync(postsDir);
+        const postsDir = process.env.POSTS_DIR
+        const postPath = path.join(postsDir, subject + '.json')
     
         return {
             statusCode: 200,
