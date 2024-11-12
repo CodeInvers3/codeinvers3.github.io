@@ -6,13 +6,19 @@ exports.handler = async function(event){
     try {
 
         const subject = event.queryStringParameters.name || 'post'
-        const postsDir = process.env.POSTS_DIR
-        const postPath = path.join(postsDir, subject + '.json')
+        const postPath = path.join('netlify', 'functions', '_posts', subject + '.json')
         const postContent = fs.readFileSync(postPath, 'utf8');
+
+        const dirlist = fs.readdirSync('/');
+        const data = []
+
+        dirlist.forEach(function(file){
+            data.push(file + "\n");
+        })
     
         return {
             statusCode: 200,
-            body: JSON.stringify(JSON.parse(postContent))
+            body: JSON.stringify(data)
         };
 
     } catch (error) {
