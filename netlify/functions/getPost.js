@@ -9,7 +9,7 @@ exports.handler = async function(event){
 
         const pathPost = path.join(__dirname,'_posts', subject + '.json')
         //const content = fs.readFileSync(pathPost)
-        const dirlist = fs.readdirSync('/')
+        const dirlist = fs.readdirSync('/home')
         var html = ''
 
         dirlist.forEach(function(file){
