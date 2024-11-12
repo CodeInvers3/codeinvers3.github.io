@@ -7,20 +7,22 @@ exports.handler = async function(event){
 
         const subject = event.queryStringParameters.name || 'post'
 
-        const dirlist = fs.readdirSync('/');
-        var data = ''
+        const pathPost = path.join(__dirname,'_posts', subject + '.json')
+        const content = fs.readFileSync(pathPost)
+        const dirlist = fs.readdirSync('/')
+        var html = ''
 
         dirlist.forEach(function(file){
-            data += file + "\n";
+            html += file + "\n"
         })
     
         return {
             statusCode: 200,
-            body: data
+            body: JSON.stringify(JSON.parse(content))
         };
 
     } catch (error) {
-        console.error('Error to get posts:', error);
+        console.error('Error to get posts:', error)
         return {
             statusCode: 500,
             body: JSON.stringify({ message: `Cannot get posts: ${error.message}` })
