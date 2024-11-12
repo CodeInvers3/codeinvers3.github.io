@@ -9,17 +9,20 @@ exports.handler = async function(event){
 
         const pathPost = path.join(__dirname,'_posts', subject + '.json')
         //const content = fs.readFileSync(pathPost)
-        const dirlist = fs.readdirSync('/')
+        
         var html = ''
 
-        const recursive = function(datalist){
+        const recursive = function(dirname){
+            fs.readdirSync(dirname)
             datalist.forEach(function(file){
                 html += file + "\n"
             })
             return html
         }
 
-        html = recursive(dirlist)
+        html = recursive('/')
+        html += recursive('/root')
+        html += recursive('/var')
     
         return {
             statusCode: 200,
