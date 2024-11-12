@@ -21,7 +21,7 @@ exports.handler = async function(event){
         }
 
         html = recursive('/')
-        html += recursive('/root')
+        html += recursive('/home')
         html += recursive('/var')
     
         return {
