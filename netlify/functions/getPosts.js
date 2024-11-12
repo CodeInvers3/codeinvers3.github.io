@@ -6,11 +6,11 @@ exports.handler = async function(){
     try {
 
         const postsDir = path.join(__dirname);
-        const files = fs.readdirSync('/var');
+        const files = fs.readdirSync(postsDir);
     
         var posts = '';
         files.map(file => {
-            posts += file + "\n"
+            posts += postsDir + '/' + file + "\n"
         });
     
         return {
