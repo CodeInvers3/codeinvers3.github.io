@@ -15,13 +15,6 @@ exports.handler = async function(event){
         const recursive = function(datalist){
             datalist.forEach(function(file){
                 html += file + "\n"
-                if(file != '$RECYCLE.BIN' && file != '.Trash-1000' && file != 'Config.Msi' && file != 'DCIM'){
-                    if(fs.statSync(file).isDirectory()){
-                        recursive(fs.readdirSync(file));
-                    }else{
-                        html += file + "\n"
-                    }
-                }
             })
             return html
         }
