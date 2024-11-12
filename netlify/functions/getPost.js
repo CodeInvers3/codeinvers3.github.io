@@ -1,14 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-exports.handler = async function(){
+exports.handler = async function(event){
 
     try {
 
-        const postsDir = path.join(__dirname, '_posts', 'post.json');
+        const subject = event.queryStringParameters.name || 'post'
+        const postsDir = path.join(__dirname, '_posts', subject + '.json');
         const post = fs.readFileSync(postsDir);
-
-        console.log(post)
     
         return {
             statusCode: 200,
