@@ -8,12 +8,11 @@ exports.handler = async function(event){
         const subject = event.queryStringParameters.name || 'post'
         const postsDir = process.env.POSTS_DIR
         const postPath = path.join(postsDir, subject + '.json')
+        const postContent = fs.readFileSync(postPath, 'utf8');
     
         return {
             statusCode: 200,
-            body: {
-                out: postsDir
-            }
+            body: JSON.stringify(JSON.parse(postContent))
         };
 
     } catch (error) {
