@@ -3,10 +3,13 @@ backend:
   name: git-gateway
   repo: CodeInvers3/codeinvers3.github.io
   branch: master
+  base_url: "https://codeinvers3.github.io"
 
-site_url: https://codeinvers3.netlify.com
+site_url: https://codeinvers3.netlify.app
 
 media_folder: "media"
+public_folder: "/media"
+
 media_library:
   name: uploadcare
   config:
