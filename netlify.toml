@@ -1,4 +1,5 @@
 [build]
+    functions = "netlify/functions"
     publish = "public"
     command = "echo No build command"
     node_bundler = "esbuild"
