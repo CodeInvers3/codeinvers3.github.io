@@ -7,26 +7,12 @@ exports.handler = async function(event){
 
         const subject = event.queryStringParameters.name || 'post'
 
-        const pathPost = path.join(__dirname,'_posts', subject + '.json')
-        //const content = fs.readFileSync(pathPost)
-        
-        var html = ''
-
-        const recursive = function(dirname){
-            var acom = ''
-            const datalist = fs.readdirSync(dirname)
-            datalist.forEach(function(file){
-                acom += file + "\n"
-            })
-            return acom
-        }
-
-        html = recursive('/var')+"\n"
-        html += recursive('/var/task')
+        const pathPost = path.join(__dirname, 'posts.json')
+        const content = fs.readFileSync(pathPost)
     
         return {
             statusCode: 200,
-            body: html
+            body: JSON.stringify(JSON.parse(content))
         };
 
     } catch (error) {
