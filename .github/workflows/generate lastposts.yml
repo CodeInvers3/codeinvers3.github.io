@@ -1,0 +1,35 @@
+name: Generate lastposts.json
+
+on:
+  push:
+    paths:
+      - '_posts/**' # Solo se ejecuta cuando hay cambios en esta carpeta
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20' # Asegúrate de que tu versión de Node.js sea compatible
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Generate lastposts.json
+      run: node generateLastPosts.js
+
+    - name: Commit lastposts.json
+      run: |
+        git config --global user.email "manyandacreaty@gmail.com"
+        git config --global user.name "CodeInvers3"
+        git add lastposts.json
+        git commit -m "Update lastposts.json"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
