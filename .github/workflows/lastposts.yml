@@ -10,3 +10,10 @@ jobs:
       - uses: actions/setup-node@v4
       - run: npm install
       - run: node addpost.js
+      - name: Commit changes
+        run: |
+          git config user.email "your_email@example.com"
+          git config user.name "Your Name"
+          git add .
+          git commit -m "Create new post"
+          git push
