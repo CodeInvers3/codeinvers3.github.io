@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '19' # Asegúrate de que tu versión de Node.js sea compatible
+        node-version: '14' # Asegúrate de que tu versión de Node.js sea compatible
 
     - name: Install dependencies
       run: npm install
@@ -32,4 +32,4 @@ jobs:
         git commit -m "Update lastposts.json"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.AUTH_SECRET }}
+        GH_TOKEN: ${{ secrets.AUTH_SECRET }}
