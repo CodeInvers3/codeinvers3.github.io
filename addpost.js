@@ -6,5 +6,5 @@ const newPost = {
   content: 'Este es el contenido de mi primer post'
 };
 
-fs.writeFileSync(path.join(__dirname, 'hello_post.json'), JSON.stringify(newPost), 'utf8');
+fs.writeFileSync(path.join(__dirname, '..', 'hello_post.json'), JSON.stringify(newPost), 'utf8');
 console.log('Archivo post.json creado exitosamente');
