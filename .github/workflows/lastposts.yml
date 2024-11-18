@@ -2,6 +2,8 @@ name: Crear nuevo post
 on:
   push:
     branches: [ master ]
+env:
+  GITHUB_TOKEN: ${{ secrets.AUTH_SECRET }}
 jobs:
   crear-post:
     runs-on: ubuntu-latest
